@@ -32,6 +32,8 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "enableTranslation": false
+    "enableTranslation": false,
+    "herokuAppName": "fwblog",
+    "herokuDeployType": "git"
   }
 }
