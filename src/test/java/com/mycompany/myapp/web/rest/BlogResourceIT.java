@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@Link BlogResource} REST controller.
+ * Integration tests for the {@link BlogResource} REST controller.
  */
 @SpringBootTest(classes = FwblogApp.class)
 public class BlogResourceIT {

@@ -4,7 +4,7 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-blog" [routerLink]="['/blog/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span >
-            Create new Blog
+            Create a new Blog
             </span>
         </button>
     </h2>
@@ -14,7 +14,7 @@
         <span>No blogs found</span>
     </div>
     <div class="table-responsive" *ngIf="blogs?.length > 0">
-        <table class="table table-striped">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
             <th><span>ID</span></th>
@@ -47,7 +47,7 @@
                             <span class="d-none d-md-inline">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', 'blog', { outlets: { popup: blog.id + '/delete'} }]"
+                                [routerLink]="['/blog', { outlets: { popup: blog.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

@@ -1,5 +1,4 @@
 package com.mycompany.myapp.repository;
-
 import com.mycompany.myapp.domain.BlogEntry;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

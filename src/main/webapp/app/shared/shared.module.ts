@@ -1,17 +1,14 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FwblogSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
+import { NgModule } from '@angular/core';
+import { FwblogSharedLibsModule } from './shared-libs.module';
+import { JhiAlertComponent } from './alert/alert.component';
+import { JhiAlertErrorComponent } from './alert/alert-error.component';
+import { JhiLoginModalComponent } from './login/login.component';
+import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 @NgModule({
-  imports: [FwblogSharedCommonModule],
-  declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
+  imports: [FwblogSharedLibsModule],
+  declarations: [JhiAlertComponent, JhiAlertErrorComponent, JhiLoginModalComponent, HasAnyAuthorityDirective],
   entryComponents: [JhiLoginModalComponent],
-  exports: [FwblogSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  exports: [FwblogSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent, JhiLoginModalComponent, HasAnyAuthorityDirective]
 })
-export class FwblogSharedModule {
-  static forRoot() {
-    return {
-      ngModule: FwblogSharedModule
-    };
-  }
-}
+export class FwblogSharedModule {}

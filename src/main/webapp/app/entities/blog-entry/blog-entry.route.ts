@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { BlogEntry } from 'app/shared/model/blog-entry.model';
@@ -17,7 +17,7 @@ export class BlogEntryResolve implements Resolve<IBlogEntry> {
   constructor(private service: BlogEntryService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IBlogEntry> {
-    const id = route.params['id'] ? route.params['id'] : null;
+    const id = route.params['id'];
     if (id) {
       return this.service.find(id).pipe(
         filter((response: HttpResponse<BlogEntry>) => response.ok),
