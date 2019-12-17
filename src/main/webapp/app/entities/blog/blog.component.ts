@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IBlog } from 'app/shared/model/blog.model';
-import { AccountService } from 'app/core/auth/account.service';
 import { BlogService } from './blog.service';
+import { BlogDeleteDialogComponent } from './blog-delete-dialog.component';
 
 @Component({
   selector: 'jhi-blog',
@@ -15,36 +14,18 @@ import { BlogService } from './blog.service';
 })
 export class BlogComponent implements OnInit, OnDestroy {
   blogs: IBlog[];
-  currentAccount: any;
   eventSubscriber: Subscription;
 
-  constructor(
-    protected blogService: BlogService,
-    protected jhiAlertService: JhiAlertService,
-    protected eventManager: JhiEventManager,
-    protected accountService: AccountService
-  ) {}
+  constructor(protected blogService: BlogService, protected eventManager: JhiEventManager, protected modalService: NgbModal) {}
 
   loadAll() {
-    this.blogService
-      .query()
-      .pipe(
-        filter((res: HttpResponse<IBlog[]>) => res.ok),
-        map((res: HttpResponse<IBlog[]>) => res.body)
-      )
-      .subscribe(
-        (res: IBlog[]) => {
-          this.blogs = res;
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+    this.blogService.query().subscribe((res: HttpResponse<IBlog[]>) => {
+      this.blogs = res.body;
+    });
   }
 
   ngOnInit() {
     this.loadAll();
-    this.accountService.identity().then(account => {
-      this.currentAccount = account;
-    });
     this.registerChangeInBlogs();
   }
 
@@ -57,10 +38,11 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInBlogs() {
-    this.eventSubscriber = this.eventManager.subscribe('blogListModification', response => this.loadAll());
+    this.eventSubscriber = this.eventManager.subscribe('blogListModification', () => this.loadAll());
   }
 
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
+  delete(blog: IBlog) {
+    const modalRef = this.modalService.open(BlogDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.blog = blog;
   }
 }

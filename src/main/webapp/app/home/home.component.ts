@@ -24,15 +24,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.accountService.identity().then((account: Account) => {
+    this.accountService.identity().subscribe((account: Account) => {
       this.account = account;
     });
     this.registerAuthenticationSuccess();
   }
 
   registerAuthenticationSuccess() {
-    this.authSubscription = this.eventManager.subscribe('authenticationSuccess', message => {
-      this.accountService.identity().then(account => {
+    this.authSubscription = this.eventManager.subscribe('authenticationSuccess', () => {
+      this.accountService.identity().subscribe(account => {
         this.account = account;
       });
     });

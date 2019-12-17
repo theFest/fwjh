@@ -1,6 +1,5 @@
 package com.mycompany.myapp.service.mapper;
 
-
 import com.mycompany.myapp.FwblogApp;
 import com.mycompany.myapp.domain.User;
 import com.mycompany.myapp.service.dto.UserDTO;

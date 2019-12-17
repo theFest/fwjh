@@ -189,8 +189,8 @@ public class BlogResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(blog.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].handle").value(hasItem(DEFAULT_HANDLE.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].handle").value(hasItem(DEFAULT_HANDLE)));
     }
     
     @Test
@@ -204,8 +204,8 @@ public class BlogResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(blog.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.handle").value(DEFAULT_HANDLE.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.handle").value(DEFAULT_HANDLE));
     }
 
     @Test
@@ -279,20 +279,5 @@ public class BlogResourceIT {
         // Validate the database contains one less item
         List<Blog> blogList = blogRepository.findAll();
         assertThat(blogList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Blog.class);
-        Blog blog1 = new Blog();
-        blog1.setId(1L);
-        Blog blog2 = new Blog();
-        blog2.setId(blog1.getId());
-        assertThat(blog1).isEqualTo(blog2);
-        blog2.setId(2L);
-        assertThat(blog1).isNotEqualTo(blog2);
-        blog1.setId(null);
-        assertThat(blog1).isNotEqualTo(blog2);
     }
 }

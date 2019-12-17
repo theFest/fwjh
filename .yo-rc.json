@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.mycompany.myapp"
     },
-    "jhipsterVersion": "6.3.0",
+    "jhipsterVersion": "6.5.1",
     "applicationType": "monolith",
     "baseName": "fwblog",
     "packageName": "com.mycompany.myapp",

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { map } from 'rxjs/operators';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
@@ -32,15 +31,6 @@ export class AuthServerProvider {
     }
 
     return this.http.post(SERVER_API_URL + 'api/authenticate', data, { observe: 'response' }).pipe(map(authenticateSuccess.bind(this)));
-  }
-
-  loginWithToken(jwt, rememberMe) {
-    if (jwt) {
-      this.storeAuthenticationToken(jwt, rememberMe);
-      return Promise.resolve(jwt);
-    } else {
-      return Promise.reject('auth-jwt-service Promise reject'); // Put appropriate error message here
-    }
   }
 
   storeAuthenticationToken(jwt, rememberMe) {
