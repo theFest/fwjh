@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@Link BlogEntryResource} REST controller.
+ * Integration tests for the {@link BlogEntryResource} REST controller.
  */
 @SpringBootTest(classes = FwblogApp.class)
 public class BlogEntryResourceIT {
@@ -49,6 +49,7 @@ public class BlogEntryResourceIT {
 
     private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant SMALLER_DATE = Instant.ofEpochMilli(-1L);
 
     @Autowired
     private BlogEntryRepository blogEntryRepository;

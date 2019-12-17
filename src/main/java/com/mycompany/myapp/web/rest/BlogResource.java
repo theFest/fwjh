@@ -82,6 +82,7 @@ public class BlogResource {
     /**
      * {@code GET  /blogs} : get all the blogs.
      *
+
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of blogs in body.
      */
     @GetMapping("/blogs")

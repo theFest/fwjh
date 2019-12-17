@@ -1,16 +1,12 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { FwblogSharedModule } from 'app/shared';
-import {
-  BlogEntryComponent,
-  BlogEntryDetailComponent,
-  BlogEntryUpdateComponent,
-  BlogEntryDeletePopupComponent,
-  BlogEntryDeleteDialogComponent,
-  blogEntryRoute,
-  blogEntryPopupRoute
-} from './';
+import { FwblogSharedModule } from 'app/shared/shared.module';
+import { BlogEntryComponent } from './blog-entry.component';
+import { BlogEntryDetailComponent } from './blog-entry-detail.component';
+import { BlogEntryUpdateComponent } from './blog-entry-update.component';
+import { BlogEntryDeletePopupComponent, BlogEntryDeleteDialogComponent } from './blog-entry-delete-dialog.component';
+import { blogEntryRoute, blogEntryPopupRoute } from './blog-entry.route';
 
 const ENTITY_STATES = [...blogEntryRoute, ...blogEntryPopupRoute];
 
@@ -23,7 +19,6 @@ const ENTITY_STATES = [...blogEntryRoute, ...blogEntryPopupRoute];
     BlogEntryDeleteDialogComponent,
     BlogEntryDeletePopupComponent
   ],
-  entryComponents: [BlogEntryComponent, BlogEntryUpdateComponent, BlogEntryDeleteDialogComponent, BlogEntryDeletePopupComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [BlogEntryComponent, BlogEntryUpdateComponent, BlogEntryDeleteDialogComponent, BlogEntryDeletePopupComponent]
 })
 export class FwblogBlogEntryModule {}

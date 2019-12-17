@@ -6,7 +6,8 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-
+    <property name="now" value="now()" dbms="h2"/>
+    
     <!--
         Added the entity Blog.
     -->
@@ -47,7 +48,7 @@
     -->
     <changeSet id="20190625110252-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/data/blog.csv"
+                  file="config/liquibase/fake-data/blog.csv"
                   separator=";"
                   tableName="blog">
             <column name="id" type="numeric"/>

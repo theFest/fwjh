@@ -3,7 +3,7 @@
     "promptValues": {
       "packageName": "com.mycompany.myapp"
     },
-    "jhipsterVersion": "6.1.2",
+    "jhipsterVersion": "6.3.0",
     "applicationType": "monolith",
     "baseName": "fwblog",
     "packageName": "com.mycompany.myapp",
@@ -34,6 +34,8 @@
     "otherModules": [],
     "enableTranslation": false,
     "herokuAppName": "fwblog",
-    "herokuDeployType": "git"
+    "herokuDeployType": "git",
+    "embeddableLaunchScript": false,
+    "blueprints": []
   }
 }

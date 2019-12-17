@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -6,22 +6,21 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: 'blog',
-        loadChildren: './blog/blog.module#FwblogBlogModule'
+        loadChildren: () => import('./blog/blog.module').then(m => m.FwblogBlogModule)
       },
       {
         path: 'blog-entry',
-        loadChildren: './blog-entry/blog-entry.module#FwblogBlogEntryModule'
+        loadChildren: () => import('./blog-entry/blog-entry.module').then(m => m.FwblogBlogEntryModule)
       },
       {
         path: 'tag',
-        loadChildren: './tag/tag.module#FwblogTagModule'
+        loadChildren: () => import('./tag/tag.module').then(m => m.FwblogTagModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
   ],
   declarations: [],
   entryComponents: [],
-  providers: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  providers: []
 })
 export class FwblogEntityModule {}

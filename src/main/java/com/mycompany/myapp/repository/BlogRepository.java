@@ -1,5 +1,4 @@
 package com.mycompany.myapp.repository;
-
 import com.mycompany.myapp.domain.Blog;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
