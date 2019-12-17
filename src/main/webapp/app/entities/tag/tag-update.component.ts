@@ -5,7 +5,6 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 import { JhiAlertService } from 'ng-jhipster';
 import { ITag, Tag } from 'app/shared/model/tag.model';
 import { TagService } from './tag.service';
@@ -41,11 +40,7 @@ export class TagUpdateComponent implements OnInit {
     });
     this.blogEntryService
       .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IBlogEntry[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IBlogEntry[]>) => response.body)
-      )
-      .subscribe((res: IBlogEntry[]) => (this.blogentries = res), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: HttpResponse<IBlogEntry[]>) => (this.blogentries = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(tag: ITag) {

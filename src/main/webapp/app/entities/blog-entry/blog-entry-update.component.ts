@@ -5,7 +5,6 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
@@ -53,18 +52,10 @@ export class BlogEntryUpdateComponent implements OnInit {
     });
     this.blogService
       .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IBlog[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IBlog[]>) => response.body)
-      )
-      .subscribe((res: IBlog[]) => (this.blogs = res), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: HttpResponse<IBlog[]>) => (this.blogs = res.body), (res: HttpErrorResponse) => this.onError(res.message));
     this.tagService
       .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<ITag[]>) => mayBeOk.ok),
-        map((response: HttpResponse<ITag[]>) => response.body)
-      )
-      .subscribe((res: ITag[]) => (this.tags = res), (res: HttpErrorResponse) => this.onError(res.message));
+      .subscribe((res: HttpResponse<ITag[]>) => (this.tags = res.body), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(blogEntry: IBlogEntry) {

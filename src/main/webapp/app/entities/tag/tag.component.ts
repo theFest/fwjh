@@ -1,15 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ITag } from 'app/shared/model/tag.model';
-import { AccountService } from 'app/core/auth/account.service';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { TagService } from './tag.service';
+import { TagDeleteDialogComponent } from './tag-delete-dialog.component';
 
 @Component({
   selector: 'jhi-tag',
@@ -17,7 +16,6 @@ import { TagService } from './tag.service';
 })
 export class TagComponent implements OnInit, OnDestroy {
   tags: ITag[];
-  currentAccount: any;
   eventSubscriber: Subscription;
   itemsPerPage: number;
   links: any;
@@ -28,10 +26,9 @@ export class TagComponent implements OnInit, OnDestroy {
 
   constructor(
     protected tagService: TagService,
-    protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
-    protected parseLinks: JhiParseLinks,
-    protected accountService: AccountService
+    protected modalService: NgbModal,
+    protected parseLinks: JhiParseLinks
   ) {
     this.tags = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -50,10 +47,7 @@ export class TagComponent implements OnInit, OnDestroy {
         size: this.itemsPerPage,
         sort: this.sort()
       })
-      .subscribe(
-        (res: HttpResponse<ITag[]>) => this.paginateTags(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: HttpResponse<ITag[]>) => this.paginateTags(res.body, res.headers));
   }
 
   reset() {
@@ -69,9 +63,6 @@ export class TagComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadAll();
-    this.accountService.identity().then(account => {
-      this.currentAccount = account;
-    });
     this.registerChangeInTags();
   }
 
@@ -84,7 +75,12 @@ export class TagComponent implements OnInit, OnDestroy {
   }
 
   registerChangeInTags() {
-    this.eventSubscriber = this.eventManager.subscribe('tagListModification', response => this.reset());
+    this.eventSubscriber = this.eventManager.subscribe('tagListModification', () => this.reset());
+  }
+
+  delete(tag: ITag) {
+    const modalRef = this.modalService.open(TagDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.tag = tag;
   }
 
   sort() {
@@ -101,9 +97,5 @@ export class TagComponent implements OnInit, OnDestroy {
     for (let i = 0; i < data.length; i++) {
       this.tags.push(data[i]);
     }
-  }
-
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
   }
 }

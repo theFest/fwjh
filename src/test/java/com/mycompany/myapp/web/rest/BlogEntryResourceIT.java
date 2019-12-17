@@ -49,7 +49,6 @@ public class BlogEntryResourceIT {
 
     private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
-    private static final Instant SMALLER_DATE = Instant.ofEpochMilli(-1L);
 
     @Autowired
     private BlogEntryRepository blogEntryRepository;
@@ -207,7 +206,7 @@ public class BlogEntryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(blogEntry.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())));
     }
@@ -256,7 +255,7 @@ public class BlogEntryResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(blogEntry.getId().intValue()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()));
     }
@@ -334,20 +333,5 @@ public class BlogEntryResourceIT {
         // Validate the database contains one less item
         List<BlogEntry> blogEntryList = blogEntryRepository.findAll();
         assertThat(blogEntryList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(BlogEntry.class);
-        BlogEntry blogEntry1 = new BlogEntry();
-        blogEntry1.setId(1L);
-        BlogEntry blogEntry2 = new BlogEntry();
-        blogEntry2.setId(blogEntry1.getId());
-        assertThat(blogEntry1).isEqualTo(blogEntry2);
-        blogEntry2.setId(2L);
-        assertThat(blogEntry1).isNotEqualTo(blogEntry2);
-        blogEntry1.setId(null);
-        assertThat(blogEntry1).isNotEqualTo(blogEntry2);
     }
 }

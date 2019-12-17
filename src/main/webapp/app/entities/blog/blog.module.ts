@@ -5,14 +5,12 @@ import { FwblogSharedModule } from 'app/shared/shared.module';
 import { BlogComponent } from './blog.component';
 import { BlogDetailComponent } from './blog-detail.component';
 import { BlogUpdateComponent } from './blog-update.component';
-import { BlogDeletePopupComponent, BlogDeleteDialogComponent } from './blog-delete-dialog.component';
-import { blogRoute, blogPopupRoute } from './blog.route';
-
-const ENTITY_STATES = [...blogRoute, ...blogPopupRoute];
+import { BlogDeleteDialogComponent } from './blog-delete-dialog.component';
+import { blogRoute } from './blog.route';
 
 @NgModule({
-  imports: [FwblogSharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [BlogComponent, BlogDetailComponent, BlogUpdateComponent, BlogDeleteDialogComponent, BlogDeletePopupComponent],
-  entryComponents: [BlogComponent, BlogUpdateComponent, BlogDeleteDialogComponent, BlogDeletePopupComponent]
+  imports: [FwblogSharedModule, RouterModule.forChild(blogRoute)],
+  declarations: [BlogComponent, BlogDetailComponent, BlogUpdateComponent, BlogDeleteDialogComponent],
+  entryComponents: [BlogDeleteDialogComponent]
 })
 export class FwblogBlogModule {}

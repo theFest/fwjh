@@ -165,7 +165,7 @@ public class TagResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tag.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
     }
     
     @Test
@@ -179,7 +179,7 @@ public class TagResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(tag.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME));
     }
 
     @Test
@@ -251,20 +251,5 @@ public class TagResourceIT {
         // Validate the database contains one less item
         List<Tag> tagList = tagRepository.findAll();
         assertThat(tagList).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Tag.class);
-        Tag tag1 = new Tag();
-        tag1.setId(1L);
-        Tag tag2 = new Tag();
-        tag2.setId(tag1.getId());
-        assertThat(tag1).isEqualTo(tag2);
-        tag2.setId(2L);
-        assertThat(tag1).isNotEqualTo(tag2);
-        tag1.setId(null);
-        assertThat(tag1).isNotEqualTo(tag2);
     }
 }
