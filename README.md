@@ -1,9 +1,10 @@
-# fwjh (Anvanced Blog example)
+# fwjh (Advanced Blog monolith example)
 
 This application was generated using JHipster 7.8.1, you can find documentation and help at [https://www.jhipster.tech](https://www.jhipster.tech).
 
-## Development
-- `.\mvnw` - build backend(terminal session 2)
+## Initial setup
+- `git clone this repo`
+- `.\mvnw` - build backend(terminal session 1)
 - `.\npm start` - build frontend(terminal session 2)
 - `localhost:8080`
 - `localhost:9000`
