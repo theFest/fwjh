@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20220316213015",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tags",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength"],
+      "fieldValidateRulesMinlength": "2"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Tags",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "topics",
+      "otherEntityRelationshipName": "tags",
+      "ownerSide": false,
+      "relationshipName": "entry",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "projects",
+      "otherEntityRelationshipName": "tags",
+      "ownerSide": false,
+      "relationshipName": "name",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "sources",
+      "otherEntityRelationshipName": "tags",
+      "ownerSide": false,
+      "relationshipName": "sources",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": false,
+  "service": "no"
+}

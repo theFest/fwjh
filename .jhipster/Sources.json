@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20220316213014",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "sources",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "author",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "attachments",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Sources",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "tags",
+      "otherEntityRelationshipName": "sources",
+      "ownerSide": true,
+      "relationshipName": "tags",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": false,
+  "service": "no"
+}

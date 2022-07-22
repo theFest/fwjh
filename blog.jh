@@ -1,25 +1,51 @@
-entity Blog {
-	name String required minlength(3),
-	handle String required minlength(2)
+entity Topics {
+	name String required minlength(3)
+	science String minlength(5)
+	information TextBlob
+	date LocalDate required
 }
 
-entity BlogEntry {
-	title String required,
-	content TextBlob required,
-	date Instant required
+entity Posts {
+	title String required
+	content TextBlob required
+	images ImageBlob
+	additionalData AnyBlob
+	comments TextBlob
+	date LocalDate required
 }
 
-entity Tag {
+entity Projects {
+	project String required
+	description TextBlob required
+	content TextBlob required
+	files AnyBlob
+	author String required
+	date LocalDate required
+}
+
+entity Sources {
+	name String required
+	url TextBlob required
+	author String required
+	attachments AnyBlob
+	date LocalDate required
+}
+
+entity Tags {
 	name String required minlength(2)
 }
 
 relationship ManyToOne {
-	Blog{user(login)} to User,
-	BlogEntry{blog(name)} to Blog
+	Topics{user(login)} to User
+	Posts{topics(name)} to Topics
 }
 
 relationship ManyToMany {
-	BlogEntry{tag(name)} to Tag{entry}
+	Topics{tags(name)} to Tags{entry}
+	Projects{tags(name)} to Tags{name}
+	Sources{tags(name)} to Tags{sources}
 }
 
-paginate BlogEntry, Tag with infinite-scroll
+search * with elasticsearch
+paginate Projects, Sources with pagination
+paginate Topics, Posts, Tags with infinite-scroll

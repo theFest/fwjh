@@ -1,0 +1,27 @@
+{
+  "fwjhApp": {
+    "tags": {
+      "home": {
+        "title": "Tags",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreirati Tags",
+        "createOrEditLabel": "Kreirati ili urediti Tags",
+        "notFound": "Nije nađeno Tags"
+      },
+      "created": "Kreiran je Tags sa identifikatorom {{ param }}",
+      "updated": "Ažuriran je Tags sa identifikatorom {{ param }}",
+      "deleted": "Obrisan je Tags sa identifikatorom {{ param }}",
+      "delete": {
+        "question": "Da li ste sigurni da želite obrisati Tags {{ id }}?"
+      },
+      "detail": {
+        "title": "Tags"
+      },
+      "id": "ID",
+      "name": "Name",
+      "entry": "Entry",
+      "name": "Name",
+      "sources": "Sources"
+    }
+  }
+}

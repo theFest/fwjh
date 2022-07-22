@@ -1,0 +1,29 @@
+{
+  "fwjhApp": {
+    "sources": {
+      "home": {
+        "title": "Sources",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreirati Sources",
+        "createOrEditLabel": "Kreirati ili urediti Sources",
+        "notFound": "Nije nađeno Sources"
+      },
+      "created": "Kreiran je Sources sa identifikatorom {{ param }}",
+      "updated": "Ažuriran je Sources sa identifikatorom {{ param }}",
+      "deleted": "Obrisan je Sources sa identifikatorom {{ param }}",
+      "delete": {
+        "question": "Da li ste sigurni da želite obrisati Sources {{ id }}?"
+      },
+      "detail": {
+        "title": "Sources"
+      },
+      "id": "ID",
+      "name": "Name",
+      "url": "Url",
+      "author": "Author",
+      "attachments": "Attachments",
+      "date": "Date",
+      "tags": "Tags"
+    }
+  }
+}

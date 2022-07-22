@@ -1,0 +1,30 @@
+{
+  "fwjhApp": {
+    "projects": {
+      "home": {
+        "title": "Projects",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreirati Projects",
+        "createOrEditLabel": "Kreirati ili urediti Projects",
+        "notFound": "Nije nađeno Projects"
+      },
+      "created": "Kreiran je Projects sa identifikatorom {{ param }}",
+      "updated": "Ažuriran je Projects sa identifikatorom {{ param }}",
+      "deleted": "Obrisan je Projects sa identifikatorom {{ param }}",
+      "delete": {
+        "question": "Da li ste sigurni da želite obrisati Projects {{ id }}?"
+      },
+      "detail": {
+        "title": "Projects"
+      },
+      "id": "ID",
+      "project": "Project",
+      "description": "Description",
+      "content": "Content",
+      "files": "Files",
+      "author": "Author",
+      "date": "Date",
+      "tags": "Tags"
+    }
+  }
+}

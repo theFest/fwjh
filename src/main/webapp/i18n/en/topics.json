@@ -1,0 +1,29 @@
+{
+  "fwjhApp": {
+    "topics": {
+      "home": {
+        "title": "Topics",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Topics",
+        "createOrEditLabel": "Create or edit a Topics",
+        "notFound": "No Topics found"
+      },
+      "created": "A new Topics is created with identifier {{ param }}",
+      "updated": "A Topics is updated with identifier {{ param }}",
+      "deleted": "A Topics is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Topics {{ id }}?"
+      },
+      "detail": {
+        "title": "Topics"
+      },
+      "id": "ID",
+      "name": "Name",
+      "science": "Science",
+      "information": "Information",
+      "date": "Date",
+      "user": "User",
+      "tags": "Tags"
+    }
+  }
+}

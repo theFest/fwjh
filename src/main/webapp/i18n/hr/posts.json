@@ -1,0 +1,30 @@
+{
+  "fwjhApp": {
+    "posts": {
+      "home": {
+        "title": "Posts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreirati Posts",
+        "createOrEditLabel": "Kreirati ili urediti Posts",
+        "notFound": "Nije nađeno Posts"
+      },
+      "created": "Kreiran je Posts sa identifikatorom {{ param }}",
+      "updated": "Ažuriran je Posts sa identifikatorom {{ param }}",
+      "deleted": "Obrisan je Posts sa identifikatorom {{ param }}",
+      "delete": {
+        "question": "Da li ste sigurni da želite obrisati Posts {{ id }}?"
+      },
+      "detail": {
+        "title": "Posts"
+      },
+      "id": "ID",
+      "title": "Title",
+      "content": "Content",
+      "images": "Images",
+      "additionalData": "Additional Data",
+      "comments": "Comments",
+      "date": "Date",
+      "topics": "Topics"
+    }
+  }
+}
